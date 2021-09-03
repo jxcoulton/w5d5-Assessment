@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Back End Assessment</title>
+	</head>
+	<body class="container">
+		<center>
+			<button id="complimentButton">Get a compliment</button>
+			<br />
+			<button id="fortuneButton">Get Fortune</button>
+			<h2 id="daysNote">Days till graduation!</h2>
+			<p id="clock" style="font-size: 48px"></p>
+			<br />
+			<label for="help">What do you need to get through till the end?</label>
+			<br />
+      <button id = advice>Get advice</button>
+      <button id = encourage>Get encouragement</button>
+      <button id = joke>Get a laugh</button>
+
+		</center>
+
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+document.getElementById("advice").onclick = function () {
+        axios
+          .get("http://localhost:4000/api/response")
+          .then(function (response) {
+            const data = response.data;
+            alert(data)
+          })
+      };
+
+      document.getElementById("encourage").onclick = function () {
+        axios
+          .get("http://localhost:4000/api/response3")
+          .then(function (response) {
+            const data = response.data;
+            alert(data)
+          })
+      };
+
+      document.getElementById("joke").onclick = function () {
+        axios
+          .get("http://localhost:4000/api/response2")
+          .then(function (response) {
+            const data = response.data;
+            alert(data)
+          })
+      };
+
+			document.getElementById("complimentButton").onclick = function () {
+				axios
+					.get("http://localhost:4000/api/compliment/")
+					.then(function (response) {
+						const data = response.data;
+						alert(data);
+					});
+			};
+
+			document.getElementById("fortuneButton").onclick = function () {
+				axios.get("http://localhost:4000/api/fortune/").then(function (res) {
+					const newData = res.data;
+					alert(newData);
+				});
+			};
+
+			let countDown = new Date("Nov 19, 2021 16:00:00").getTime();
+
+			const timer = setInterval(function () {
+				let now = new Date().getTime();
+				let distance = countDown - now;
+
+				const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+				const hours = Math.floor(
+					(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+				);
+				const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+				document.getElementById("clock").innerHTML =
+					days + "D " + hours + "H " + minutes + "M " + seconds + "S ";
+
+				if (distance < 0) {
+					clearInterval(timer);
+					document.getElementById("clock").innerHTML = "WE DID IT!!";
+					document.getElementById("daysNote").innerHTML = "";
+				}
+			}, 1000);
+		</script>
+	</body>
+</html>
