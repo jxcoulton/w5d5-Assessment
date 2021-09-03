@@ -23,7 +23,7 @@
 		<script>
 document.getElementById("advice").onclick = function () {
         axios
-          .get("http://localhost:4000/api/response")
+          .get("http://localhost:4000/api/advice")
           .then(function (response) {
             const data = response.data;
             alert(data)
@@ -32,7 +32,7 @@ document.getElementById("advice").onclick = function () {
 
       document.getElementById("encourage").onclick = function () {
         axios
-          .get("http://localhost:4000/api/response3")
+          .get("http://localhost:4000/api/encourage")
           .then(function (response) {
             const data = response.data;
             alert(data)
@@ -41,7 +41,7 @@ document.getElementById("advice").onclick = function () {
 
       document.getElementById("joke").onclick = function () {
         axios
-          .get("http://localhost:4000/api/response2")
+          .get("http://localhost:4000/api/joke")
           .then(function (response) {
             const data = response.data;
             alert(data)

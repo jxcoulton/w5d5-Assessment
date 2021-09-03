@@ -36,16 +36,16 @@ app.get("/api/fortune", (req, res) => {
 	res.status(200).send(randomFortune);
 });
 
-app.get('/api/response', (req,res) => {
+app.get('/api/advice', (req,res) => {
   let advice = ["If you get stuck on an error, console.log down your code to find where your response isnt what it is supposed to be."]
   res.status(200).send(advice)
 });
 
-app.get('/api/response2', (req,res) => {
+app.get('/api/joke', (req,res) => {
   let joke = ["I was wondering why the frisbee was getting bigger, then it hit me."]
   res.status(200).send(joke)
 });
-app.get('/api/response3', (req,res) => {
+app.get('/api/encourage', (req,res) => {
   let encourage = ["Your harshest critic is always going to be yourself. Don't ignore that critic but don't give it more attention than it deserves"]
   res.status(200).send(encourage)
 });
