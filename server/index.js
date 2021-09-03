@@ -2,10 +2,13 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-
 app.use(cors());
 
 app.use(express.json()); // When we want to be able to accept JSON.
+
+// app.get("/api/getResponse", (req, res) => {
+// 	if ()
+// })
 
 app.get("/api/compliment", (req, res) => {
 	const compliments = [
@@ -36,18 +39,24 @@ app.get("/api/fortune", (req, res) => {
 	res.status(200).send(randomFortune);
 });
 
-app.get('/api/advice', (req,res) => {
-  let advice = ["If you get stuck on an error, console.log down your code to find where your response isnt what it is supposed to be."]
-  res.status(200).send(advice)
+app.get("/api/advice", (req, res) => {
+	let advice = [
+		"If you get stuck on an error, console.log down your code to find where your response isnt what it is supposed to be.",
+	];
+	res.status(200).send(advice);
 });
 
-app.get('/api/joke', (req,res) => {
-  let joke = ["I was wondering why the frisbee was getting bigger, then it hit me."]
-  res.status(200).send(joke)
+app.get("/api/joke", (req, res) => {
+	let joke = [
+		"I was wondering why the frisbee was getting bigger, then it hit me.",
+	];
+	res.status(200).send(joke);
 });
-app.get('/api/encourage', (req,res) => {
-  let encourage = ["Your harshest critic is always going to be yourself. Don't ignore that critic but don't give it more attention than it deserves"]
-  res.status(200).send(encourage)
+app.get("/api/encourage", (req, res) => {
+	let encourage = [
+		"Your harshest critic is always going to be yourself. Don't ignore that critic but don't give it more attention than it deserves",
+	];
+	res.status(200).send(encourage);
 });
 
 app.listen(4000, () => console.log("Server running on 4000"));

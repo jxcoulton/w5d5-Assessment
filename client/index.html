@@ -8,46 +8,79 @@
 			<button id="complimentButton">Get a compliment</button>
 			<br />
 			<button id="fortuneButton">Get Fortune</button>
-			<h2 id="daysNote">Days till graduation!</h2>
-			<p id="clock" style="font-size: 48px"></p>
+			<h1 id="daysNote" style="font-size: 48px">Days till graduation!</h1>
+			<p id="clock" style="font-size: 48px; font-weight: bolder"></p>
 			<br />
-			<label for="help">What do you need to get through till the end?</label>
+			<label style="font-size: 28px"
+				>What do you need to get through till the end?</label
+			>
 			<br />
-      <button id = advice>Get advice</button>
-      <button id = encourage>Get encouragement</button>
-      <button id = joke>Get a laugh</button>
-
+			<button id="advice">Get advice</button>
+			<button id="encourage">Get encouragement</button>
+			<button id="joke">Get a laugh</button>
+			<br />
+			<br />
+			<form id="createdForm">
+				<label style="font-size: 28px">What do you need to keep going?</label>
+				<br />
+				<select id="dropdown">
+					<option value="advice">Get Advice</option>
+					<option value="encourage">Get Encourged</option>
+					<option value="joke">Get a joke</option>
+				</select>
+				<button type="submit">Submit</button>
+			</form>
 		</center>
 
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script>
-document.getElementById("advice").onclick = function () {
-        axios
-          .get("http://localhost:4000/api/advice")
-          .then(function (response) {
-            const data = response.data;
-            alert(data)
-          })
-      };
+			const form = document.getElementById("createdForm");
 
-      document.getElementById("encourage").onclick = function () {
-        axios
-          .get("http://localhost:4000/api/encourage")
-          .then(function (response) {
-            const data = response.data;
-            alert(data)
-          })
-      };
+			const adviceAlert =
+				"If you get stuck on an error, console.log down your code to find where your response isnt what it is supposed to be.";
 
-      document.getElementById("joke").onclick = function () {
-        axios
-          .get("http://localhost:4000/api/joke")
-          .then(function (response) {
-            const data = response.data;
-            alert(data)
-          })
-      };
+			const encourageAlert =
+				"Your harshest critic is always going to be yourself. Don't ignore that critic but don't give it more attention than it deserves";
 
+			const jokeAlert =
+				"I was wondering why the frisbee was getting bigger, then it hit me.";
+
+			function getResponse(e) {
+				e.preventDefault();
+				const list = e.target.querySelector("select");
+				if (list.selectedOptions[0].value === "advice") {
+					alert(adviceAlert);
+				} else if (list.selectedOptions[0].value === "encourage") {
+					alert(encourageAlert);
+				} else {
+					alert(jokeAlert);
+				}
+			}
+
+			form.addEventListener("submit", getResponse);
+
+			document.getElementById("advice").onclick = function () {
+				axios.get("http://localhost:4000/api/advice").then(function (response) {
+					const data = response.data;
+					alert(data);
+				});
+			};
+
+			document.getElementById("encourage").onclick = function () {
+				axios
+					.get("http://localhost:4000/api/encourage")
+					.then(function (response) {
+						const data = response.data;
+						alert(data);
+					});
+			};
+
+			document.getElementById("joke").onclick = function () {
+				axios.get("http://localhost:4000/api/joke").then(function (response) {
+					const data = response.data;
+					alert(data);
+				});
+			};
 			document.getElementById("complimentButton").onclick = function () {
 				axios
 					.get("http://localhost:4000/api/compliment/")
@@ -86,6 +119,7 @@ document.getElementById("advice").onclick = function () {
 					document.getElementById("daysNote").innerHTML = "";
 				}
 			}, 1000);
+			// dropdown.addEventListener('submit', )
 		</script>
 	</body>
 </html>
